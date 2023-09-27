@@ -46,7 +46,11 @@ export function Header({ onFilterChange }) {
 
   return (
     <Container>
-      <img src="/images/SENAI_Logo.png" alt="Logo Istituto SENAI de Tecnologia" />
+      <div className="images">
+        <img src="/images/finder.svg" alt="Logo Finder" />
+        <div className="divider"/>
+        <img src="/images/SENAI_Logo.png" alt="Logo Istituto SENAI de Tecnologia" />
+      </div>
 
       <div>
         <Calendar

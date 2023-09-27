@@ -17,6 +17,38 @@ export const Container = styled.div`
         padding: 35px;
         
         font-family: 'Inter', sans-serif;
+
+        .title{
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .U1{
+            display: flex;
+            gap: 20px;
+        }
+
+        .U2{
+            display: flex;
+            gap: 20px;
+        }
+
+        .U3{
+            display: flex;
+            gap: 20px;
+        }
+
+        .App{
+            >div{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+        }
     }
 `;
      
