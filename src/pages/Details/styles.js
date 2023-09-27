@@ -45,7 +45,7 @@ export const Container = styled.div`
             >div{
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
                 align-items: center;
             }
         }

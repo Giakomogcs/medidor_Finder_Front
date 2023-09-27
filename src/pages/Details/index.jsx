@@ -1,15 +1,17 @@
-import {Container, Content} from "./styles"
-import { Header } from "../../components/Header"
-import { TableWork } from "../../components/Table"
-import { WorkHours } from "../../components/WorkHours"
-import {DataCard} from '../../components/DataCard';
-
-import { ImPower } from 'react-icons/im';
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Container, Content } from './styles';
+import { Header } from '../../components/Header';
+import { DataCard } from '../../components/DataCard';
 
-export function Details(){
+import { ImPower } from 'react-icons/im';
+import { ImRadioChecked } from 'react-icons/im';
+import { ImRadioUnchecked } from 'react-icons/im';
+import { ImPowerCord } from 'react-icons/im';
+import { CiWavePulse1 } from 'react-icons/ci';
+import { LuTriangleRight } from 'react-icons/lu';
+
+export function Details() {
   const [data, setData] = useState(null);
 
   const [filter, setFilter] = useState({
@@ -32,64 +34,114 @@ export function Details(){
   }, []);
 
   const fetchData = () => {
-    axios.get(`http://localhost:3333/data/${filter.selectedMachine}`)
-    .then(response => {
-      setData(response.data.datas);
-    })
-    .catch(error => {
-      console.error('Erro ao buscar dados:', error);
-    });
+    axios
+      .get(`http://localhost:3333/data/${filter.selectedMachine}`)
+      .then((response) => {
+        setData(response.data.datas);
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar dados:', error);
+      });
   };
 
   return (
-
     <Container>
-      <Header onFilterChange={handleFilterChange}/>
+      <Header onFilterChange={handleFilterChange} />
 
       <main>
-
         <div className="title">
           <h1>Medidor Finder</h1>
-          {data &&(
-            <p>{ data.timestamp}</p>
-          )}
+          {data && <p>{data.timestamp}</p>}
         </div>
 
         <div className="App">
           {data && (
-            // <ul>
-            //   <li>Pt: {data.Pt}</li>
-            //   <li>Qt: {data.Qt}</li>
-            //   <li>St: {data.St}</li>
-            //   <li>PFt: {data.PFt}</li>
-            //   <li>Frequência: {data.Frequency}</li>
-            //   <li>U1: {data.U1}</li>
-            //   <li>U2: {data.U2}</li>
-            //   <li>U3: {data.U3}</li>
-            //   <li>I1: {data.I1}</li>
-            //   <li>I2: {data.I2}</li>
-            //   <li>I3: {data.I3}</li>
-            // </ul>
             <div>
-              <DataCard title="Active Power Total" description=" (Pt)" icon={<ImPower/>} value={data.Pt} unit="kW" />
-              <DataCard title="Reactive Power Total" description=" (Qt)" icon={<ImPower/>} value={data.Qt} unit="kW" />
-              <DataCard title="Apparent Power Total" description=" (St)" icon={<ImPower/>} value={data.Pt} unit="kW" />
-              <DataCard title="Power Factor Total" description=" (PFt)" icon={<ImPower/>} value={data.St} unit="kW" />
-              <DataCard title="Frequency" description="" icon={<ImPower/>} value={data.PFt} unit="kW" />
+              <DataCard
+                title="Active Power Total"
+                description=" (Pt)"
+                icon={<LuTriangleRight />}
+                value={data.Pt}
+                unit="kW"
+              />
+              <DataCard
+                title="Reactive Power Total"
+                description=" (Qt)"
+                icon={<LuTriangleRight />}
+                value={data.Qt}
+                unit="kVAR"
+              />
+              <DataCard
+                title="Apparent Power Total"
+                description=" (St)"
+                icon={<LuTriangleRight />}
+                value={data.St}
+                unit="kVA"
+              />
+              <DataCard
+                title="Power Factor Total"
+                description=" (PFt)"
+                icon={<ImPowerCord />}
+                value={data.PFt}
+                unit=""
+              />
+              <DataCard
+                title="Frequency"
+                description=""
+                icon={<CiWavePulse1 />}
+                value={data.Frequency}
+                unit="Hz"
+              />
 
               <div className="U1">
-                <DataCard title="U1" description="" icon={<ImPower/>} value={data.Frequency} unit="kW" />
-                <DataCard title="I1" description="" icon={<ImPower/>} value={data.U3} unit="kW" />
+                <DataCard
+                  title="U1"
+                  description=""
+                  icon={<ImRadioChecked />}
+                  value={data.U1}
+                  unit="V"
+                />
+                <DataCard
+                  title="I1"
+                  description=""
+                  icon={<ImRadioUnchecked />}
+                  value={data.I1}
+                  unit="A"
+                />
               </div>
 
               <div className="U2">
-                <DataCard title="U2" description="" icon={<ImPower/>} value={data.U1} unit="kW" />
-                <DataCard title="I2" description="" icon={<ImPower/>} value={data.I1} unit="kW" />
+                <DataCard
+                  title="U2"
+                  description=""
+                  icon={<ImRadioChecked />}
+                  value={data.U2}
+                  unit="V"
+                />
+                <DataCard
+                  title="I2"
+                  description=""
+                  icon={<ImRadioUnchecked />}
+                  value={data.I2}
+                  unit="A"
+                />
               </div>
 
               <div className="U3">
-                <DataCard title="U3" description="" icon={<ImPower/>} value={data.U2} unit="kW" />
-                <DataCard title="I3" description="" icon={<ImPower/>} value={data.I2} unit="kW" />
+                <DataCard
+                  title="U3"
+                  description=""
+                  icon={<ImRadioChecked />}
+                  value={data.U3}
+                  unit="V"
+                />
+                <DataCard
+                  title="I3"
+                  description=""
+                  icon={<ImRadioUnchecked />}
+                  value={data.I3}
+                  unit="A"
+                />
               </div>
             </div>
           )}
