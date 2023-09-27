@@ -50,108 +50,113 @@ export function Details() {
       <Header onFilterChange={handleFilterChange} />
 
       <main>
-        <div className="title">
-          <h1>Medidor Finder</h1>
-          {data && <p>{data.timestamp}</p>}
-        </div>
 
-        <div className="App">
-          {data && (
-            <div>
-              <DataCard
-                title="Active Power Total"
-                description=" (Pt)"
-                icon={<LuTriangleRight />}
-                value={data.Pt}
-                unit="kW"
-              />
-              <DataCard
-                title="Reactive Power Total"
-                description=" (Qt)"
-                icon={<LuTriangleRight />}
-                value={data.Qt}
-                unit="kVAR"
-              />
-              <DataCard
-                title="Apparent Power Total"
-                description=" (St)"
-                icon={<LuTriangleRight />}
-                value={data.St}
-                unit="kVA"
-              />
-              <DataCard
-                title="Power Factor Total"
-                description=" (PFt)"
-                icon={<ImPowerCord />}
-                value={data.PFt}
-                unit=""
-              />
-              <DataCard
-                title="Frequency"
-                description=""
-                icon={<CiWavePulse1 />}
-                value={data.Frequency}
-                unit="Hz"
-              />
-
-              <div className="U1">
-                <DataCard
-                  title="U1"
-                  description=""
-                  icon={<ImRadioChecked />}
-                  value={data.U1}
-                  unit="V"
-                />
-                <DataCard
-                  title="I1"
-                  description=""
-                  icon={<ImRadioUnchecked />}
-                  value={data.I1}
-                  unit="A"
-                />
-              </div>
-
-              <div className="U2">
-                <DataCard
-                  title="U2"
-                  description=""
-                  icon={<ImRadioChecked />}
-                  value={data.U2}
-                  unit="V"
-                />
-                <DataCard
-                  title="I2"
-                  description=""
-                  icon={<ImRadioUnchecked />}
-                  value={data.I2}
-                  unit="A"
-                />
-              </div>
-
-              <div className="U3">
-                <DataCard
-                  title="U3"
-                  description=""
-                  icon={<ImRadioChecked />}
-                  value={data.U3}
-                  unit="V"
-                />
-                <DataCard
-                  title="I3"
-                  description=""
-                  icon={<ImRadioUnchecked />}
-                  value={data.I3}
-                  unit="A"
-                />
-              </div>
+        <Content>
+          
+          <div className="currentData">
+            
+            <div className="title">
+              <h1>Medidor Finder</h1>
+              {data && <p>{data.timestamp}</p>}
             </div>
-          )}
-        </div>
+
+            {data && (
+              <div>
+                <DataCard
+                  title="Active Power Total"
+                  description=" (Pt)"
+                  icon={<LuTriangleRight />}
+                  value={data.Pt}
+                  unit="kW"
+                />
+                <DataCard
+                  title="Reactive Power Total"
+                  description=" (Qt)"
+                  icon={<LuTriangleRight />}
+                  value={data.Qt}
+                  unit="kVAR"
+                />
+                <DataCard
+                  title="Apparent Power Total"
+                  description=" (St)"
+                  icon={<LuTriangleRight />}
+                  value={data.St}
+                  unit="kVA"
+                />
+                <DataCard
+                  title="Power Factor Total"
+                  description=" (PFt)"
+                  icon={<ImPowerCord />}
+                  value={data.PFt}
+                  unit=""
+                />
+                <DataCard
+                  title="Frequency"
+                  description=""
+                  icon={<CiWavePulse1 />}
+                  value={data.Frequency}
+                  unit="Hz"
+                />
+
+                <div className="U1">
+                  <DataCard
+                    title="U1"
+                    description=""
+                    icon={<ImRadioChecked />}
+                    value={data.U1}
+                    unit="V"
+                  />
+                  <DataCard
+                    title="I1"
+                    description=""
+                    icon={<ImRadioUnchecked />}
+                    value={data.I1}
+                    unit="A"
+                  />
+                </div>
+
+                <div className="U2">
+                  <DataCard
+                    title="U2"
+                    description=""
+                    icon={<ImRadioChecked />}
+                    value={data.U2}
+                    unit="V"
+                  />
+                  <DataCard
+                    title="I2"
+                    description=""
+                    icon={<ImRadioUnchecked />}
+                    value={data.I2}
+                    unit="A"
+                  />
+                </div>
+
+                <div className="U3">
+                  <DataCard
+                    title="U3"
+                    description=""
+                    icon={<ImRadioChecked />}
+                    value={data.U3}
+                    unit="V"
+                  />
+                  <DataCard
+                    title="I3"
+                    description=""
+                    icon={<ImRadioUnchecked />}
+                    value={data.I3}
+                    unit="A"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
 
 
-        <div className="Graphic">
-          <WorkHours filter={filter}/>
-        </div>
+          <div className="Graphic">
+            <WorkHours filter={filter}/>
+          </div>
+        </Content>
       </main>
     </Container>
   );

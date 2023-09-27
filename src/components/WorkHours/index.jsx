@@ -61,7 +61,7 @@ export function WorkHours({ filter }) {
   }, [startDate, endDate, selectedMachine]);
 
   return (
-    <div>
+    <Container>
       <h2>Gráfico de Tensões Trifásicas</h2>
       <LineChart width={800} height={400} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
@@ -70,9 +70,9 @@ export function WorkHours({ filter }) {
         <Tooltip />
         <Legend />
         <Line type="monotone" dataKey="U1" name="U1" stroke="red" />
-        <Line type="monotone" dataKey="U2" name="U2" stroke="blue" />
+        <Line type="monotone" dataKey="U2" name="U2" stroke="orange" />
         <Line type="monotone" dataKey="U3" name="U3" stroke="green" />
       </LineChart>
-    </div>
+    </Container>
   );
 }

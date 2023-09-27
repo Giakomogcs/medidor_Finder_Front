@@ -12,18 +12,42 @@ export const Container = styled.div`
     "content";
 
     > main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
         grid-area: content;
         overflow-y: auto;
         padding: 35px;
         
         font-family: 'Inter', sans-serif;
 
-        .title{
+    }
+`;
+     
+
+export const Content = styled.div`
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 200px;
+
+    .title{
             display: flex;
             flex-direction:column;
             align-items: center;
             justify-content: center;
             margin-bottom: 40px;
+        }
+
+    .currentData{
+        >div{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
 
         .U1{
@@ -40,32 +64,6 @@ export const Container = styled.div`
             display: flex;
             gap: 20px;
         }
-
-        .App{
-            >div{
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                align-items: center;
-            }
-        }
-    }
-`;
-     
-
-export const Content = styled.div`
-    
-    display: grid;
-    grid-template-rows: 105px auto;
-    grid-template-areas: 
-    "title"
-    "graphic";
-
-    .Title{
-        grid-area: "title";
-        display: flex;
-        justify-content: center;
-        font-size: 16px;
     }
 
     .Graphic{
