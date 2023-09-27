@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Container, Content } from './styles';
 import { Header } from '../../components/Header';
 import { DataCard } from '../../components/DataCard';
+import { WorkHours } from "../../components/WorkHours"
 
 import { ImPower } from 'react-icons/im';
 import { ImRadioChecked } from 'react-icons/im';
@@ -145,6 +146,11 @@ export function Details() {
               </div>
             </div>
           )}
+        </div>
+
+
+        <div className="Graphic">
+          <WorkHours filter={filter}/>
         </div>
       </main>
     </Container>
