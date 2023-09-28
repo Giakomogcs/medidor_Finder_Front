@@ -3,6 +3,7 @@ import {Input} from "../../components/Input";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { format } from 'date-fns';
+import { api } from '../../services/api';
 
 
 import { Calendar } from "../../components/Calendar"
@@ -17,7 +18,7 @@ export function Header({ onFilterChange }) {
   useEffect(() => {
     
     axios
-      .get('http://localhost:3333/machine')
+      api.get('/machine')
       .then(response => {
         setMachines(response.data.machines);
       })

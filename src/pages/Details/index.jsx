@@ -11,6 +11,8 @@ import { ImRadioUnchecked } from 'react-icons/im';
 import { ImPowerCord } from 'react-icons/im';
 import { CiWavePulse1 } from 'react-icons/ci';
 import { LuTriangleRight } from 'react-icons/lu';
+import { api } from '../../services/api';
+
 
 export function Details() {
   const [data, setData] = useState(null);
@@ -36,7 +38,7 @@ export function Details() {
 
   const fetchData = () => {
     axios
-      .get(`http://localhost:3333/data/${filter.selectedMachine}`)
+      api.get(`/data/${filter.selectedMachine}`)
       .then((response) => {
         setData(response.data.datas);
       })

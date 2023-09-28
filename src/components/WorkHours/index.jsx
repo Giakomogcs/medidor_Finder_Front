@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Container, CustomSelect } from './styles';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import Select from 'react-select';
+import { api } from '../../services/api';
 
 
 export function WorkHours({ filter }) {
@@ -39,7 +40,7 @@ export function WorkHours({ filter }) {
   useEffect(() => {
     if (startDate && endDate && selectedMachine) {
       axios
-        .get(`http://localhost:3333/data/hist/${selectedMachine}`, {
+        api.get(`/data/hist/${selectedMachine}`, {
           params: {
             start: startDate,
             end: endDate,

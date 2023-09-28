@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, TableCell } from './styles'; // Importe os componentes estilizados
+import { api } from '../../services/api';
 
 export function TableWork({ filter }) {
   const [datas, setDatas] = useState([]);
@@ -9,7 +10,7 @@ export function TableWork({ filter }) {
   useEffect(() => {
     if (startDate && endDate || selectedMachine) {
       axios
-      .get(`http://localhost:3333/data/${selectedMachine}`, {
+      api.get(`/data/${selectedMachine}`, {
         params: {
           start: startDate,
           end: endDate,
