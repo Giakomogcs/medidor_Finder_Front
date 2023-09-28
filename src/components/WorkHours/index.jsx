@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container } from './styles';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import Select from 'react-select';
+
 
 export function WorkHours({ filter }) {
   const [data, setData] = useState([]);
@@ -50,6 +52,14 @@ export function WorkHours({ filter }) {
             U1: item.U1,
             U2: item.U2,
             U3: item.U3,
+            I1: item.I1,
+            I2: item.I2,
+            I3: item.I3,
+            Pt: item.Pt,
+            Qt: item.Qt,
+            St: item.St,
+            PFt: item.PFt,
+            Frequency: item.Frequency
           }));
 
           setData(dataPoints);
@@ -60,18 +70,96 @@ export function WorkHours({ filter }) {
     }
   }, [startDate, endDate, selectedMachine]);
 
+  const [selectedVariable, setSelectedVariable] = useState(null);
+
+  const variableOptions = [
+    { value: 'U', label: 'Tensões (U1, U2, U3)' },
+    { value: 'I', label: 'Correntes (I1, I2, I3)' },
+    { value: 'U1', label: 'Tensão (U1)' },
+    { value: 'U2', label: 'Tensão (U2)' },
+    { value: 'U3', label: 'Tensão (U3)' },
+    { value: 'I1', label: 'Corrente (I1)' },
+    { value: 'I2', label: 'Corrente (I2)' },
+    { value: 'I3', label: 'Corrente (I3)' },
+    { value: 'Pt', label: 'Active Power Total (Pt)' },
+    { value: 'Qt', label: 'Reactive Power Total (Qt)' },
+    { value: 'St', label: 'Apparent Power Total (St)' },
+    { value: 'PFt', label: 'Power Factor Total (PFt)' },
+    { value: 'Frequency', label: 'Frequency' },
+  ];
+
+  const handleVariableChange = (selectedOption) => {
+    setSelectedVariable(selectedOption);
+  };
+
+  const dataKeyList = [];
+
+  if (selectedVariable) {
+    if (selectedVariable.value === 'U') {
+      dataKeyList.push('U1', 'U2', 'U3');
+    } else if (selectedVariable.value === 'I') {
+      dataKeyList.push('I1', 'I2', 'I3');
+    } else {
+      dataKeyList.push(selectedVariable.value);
+    }
+  }
+
+  const getStrokeColor = (variable) => {
+    switch (variable) {
+      case 'U1':
+        return 'red';
+      case 'U2':
+        return 'orange';
+      case 'U3':
+        return 'green';
+      case 'I1':
+        return 'blue';
+      case 'I2':
+        return 'purple';
+      case 'I3':
+        return 'pink';
+      case 'Pt':
+        return 'brown';
+      case 'Qt':
+        return 'gray';
+      case 'St':
+        return 'cyan';
+      case 'PFt':
+        return 'magenta';
+      case 'Frequency':
+        return 'lime';
+      default:
+        return 'black'; // Cor padrão para variáveis desconhecidas
+    }
+  };
+
   return (
     <Container>
-      <h2>Gráfico de Tensões Trifásicas</h2>
+      <h2>Histórico Finder</h2>
+
+      <Select
+        value={selectedVariable}
+        onChange={handleVariableChange}
+        options={variableOptions}
+        placeholder="Selecione uma variável..."
+      />
       <LineChart width={800} height={400} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="timestamp" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="U1" name="U1" stroke="red" />
-        <Line type="monotone" dataKey="U2" name="U2" stroke="orange" />
-        <Line type="monotone" dataKey="U3" name="U3" stroke="green" />
+
+        {dataKeyList.map((key) => (
+        <Line
+          key={key}
+          type="monotone"
+          dataKey={key}
+          name={key}
+          stroke={getStrokeColor(key)} // Defina uma função para obter cores
+        />
+        ))}
+
       </LineChart>
     </Container>
   );
