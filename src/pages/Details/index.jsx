@@ -110,8 +110,8 @@ export function Details() {
                     title="I1"
                     description=""
                     icon={<ImRadioUnchecked />}
-                    value={data.I1}
-                    unit="A"
+                    value={(data.I1)*1000}
+                    unit="mA"
                   />
                 </div>
 
@@ -127,8 +127,8 @@ export function Details() {
                     title="I2"
                     description=""
                     icon={<ImRadioUnchecked />}
-                    value={data.I2}
-                    unit="A"
+                    value={(data.I2)*1000}
+                    unit="mA"
                   />
                 </div>
 
@@ -144,8 +144,8 @@ export function Details() {
                     title="I3"
                     description=""
                     icon={<ImRadioUnchecked />}
-                    value={data.I3}
-                    unit="A"
+                    value={(data.I3)*1000}
+                    unit="mA"
                   />
                 </div>
               </div>

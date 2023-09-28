@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container } from './styles';
+import { Container, CustomSelect } from './styles';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import Select from 'react-select';
 
@@ -52,9 +52,9 @@ export function WorkHours({ filter }) {
             U1: item.U1,
             U2: item.U2,
             U3: item.U3,
-            I1: item.I1,
-            I2: item.I2,
-            I3: item.I3,
+            I1: item.I1*1000,
+            I2: item.I2*1000,
+            I3: item.I3*1000,
             Pt: item.Pt,
             Qt: item.Qt,
             St: item.St,
@@ -137,12 +137,15 @@ export function WorkHours({ filter }) {
     <Container>
       <h2>Histórico Finder</h2>
 
-      <Select
+      <CustomSelect
+        className="select"
+        classNamePrefix="select"
         value={selectedVariable}
         onChange={handleVariableChange}
         options={variableOptions}
         placeholder="Selecione uma variável..."
       />
+
       <LineChart width={800} height={400} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="timestamp" />
