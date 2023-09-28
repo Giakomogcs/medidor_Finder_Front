@@ -69,21 +69,21 @@ export function Details() {
                   description=" (Pt)"
                   icon={<LuTriangleRight />}
                   value={data.Pt}
-                  unit="kW"
+                  unit="W"
                 />
                 <DataCard
                   title="Reactive Power Total"
                   description=" (Qt)"
                   icon={<LuTriangleRight />}
                   value={data.Qt}
-                  unit="kVAR"
+                  unit="VAR"
                 />
                 <DataCard
                   title="Apparent Power Total"
                   description=" (St)"
                   icon={<LuTriangleRight />}
                   value={data.St}
-                  unit="kVA"
+                  unit="VA"
                 />
                 <DataCard
                   title="Power Factor Total"
